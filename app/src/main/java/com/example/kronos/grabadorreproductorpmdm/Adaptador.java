@@ -39,7 +39,6 @@ public class Adaptador extends ArrayAdapter<String> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Log.v("LOG", "" + lista.size());
         ViewHolder vh;
         if(convertView == null){
             convertView = i.inflate(recurso, null);
@@ -49,7 +48,6 @@ public class Adaptador extends ArrayAdapter<String> {
         }else{
             vh=(ViewHolder)convertView.getTag();
         }
-        Log.v("s",lista.get(1));
         vh.posicion = position;
         vh.titulo.setText(lista.get(position));
         return convertView;

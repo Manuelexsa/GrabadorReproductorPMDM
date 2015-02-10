@@ -48,8 +48,7 @@ public class Principal extends Activity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-               // Toast.makeText(getBaseContext(), canciones.get(i).toString(), Toast.LENGTH_LONG).show();
-                Titulo.setText(titulos.get(i).toString());
+               Titulo.setText(titulos.get(i).toString());
                 Intent intent = new Intent(Principal.this, ServicioAudio.class);
                 intent.setAction(ServicioAudio.STOP);
                 startService(intent);
@@ -88,10 +87,8 @@ public class Principal extends Activity {
         while(!c.isAfterLast()){
             ruta = c.getString(c.getColumnIndex("_data"));
             titulo = c.getString(c.getColumnIndex("title"));
-            Log.v("titulos",titulo);
             canciones.add(ruta);
             ts.add(titulo);
-           // titulos.add(titulo);
             c.moveToNext();
             i++;
         }
@@ -133,23 +130,14 @@ public class Principal extends Activity {
         if(cancionActual<canciones.size()-1){
             cancionActual++;
             Titulo.setText(titulos.get(cancionActual).toString());
-
-            intent.setAction(ServicioAudio.STOP);
-            startService(intent);
             intent.putExtra("cancion", canciones.get(cancionActual).toString());
-            intent.setAction(ServicioAudio.ADD);
-            startService(intent);
             intent.setAction(ServicioAudio.PLAY);
             startService(intent);
             reproduciendo = true;
         }else{
             cancionActual = 0;
             Titulo.setText(titulos.get(0).toString());
-            intent.setAction(ServicioAudio.STOP);
-            startService(intent);
             intent.putExtra("cancion", canciones.get(0).toString());
-            intent.setAction(ServicioAudio.ADD);
-            startService(intent);
             intent.setAction(ServicioAudio.PLAY);
             startService(intent);
             reproduciendo = true;
@@ -160,22 +148,14 @@ public class Principal extends Activity {
         if(cancionActual != 0){
             cancionActual--;
             Titulo.setText(titulos.get(cancionActual).toString());
-            intent.setAction(ServicioAudio.STOP);
-            startService(intent);
             intent.putExtra("cancion", canciones.get(cancionActual).toString());
-            intent.setAction(ServicioAudio.ADD);
-            startService(intent);
             intent.setAction(ServicioAudio.PLAY);
             startService(intent);
             reproduciendo = true;
         }else{
             cancionActual = canciones.size()-1;
             Titulo.setText(titulos.get(cancionActual).toString());
-            intent.setAction(ServicioAudio.STOP);
-            startService(intent);
             intent.putExtra("cancion", canciones.get(cancionActual).toString());
-            intent.setAction(ServicioAudio.ADD);
-            startService(intent);
             intent.setAction(ServicioAudio.PLAY);
             startService(intent);
             reproduciendo = true;

@@ -35,14 +35,9 @@ public class ServicioAudio extends Service implements MediaPlayer.OnPreparedList
         error
     };
     private Estados estado;
-    /*********************************/
-    /***********CONSTRUCTOR***********/
-    /*********************************/
 
     public ServicioAudio() {
     }
-    /*******************************************/
-    /***********Metodos Sobreescritos***********/
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -104,11 +99,8 @@ public class ServicioAudio extends Service implements MediaPlayer.OnPreparedList
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.v("Log ", "aaaaaa");
         String action = intent.getAction();
-        Log.v("Log ","Accion: "+action);
         String dato = intent.getStringExtra("cancion");
-        Log.v("Log ","Dato: "+rutaCancion+"-"+dato);
         if(action.equals("play")){
             play();
         }else if(action.equals("add")){
@@ -121,9 +113,6 @@ public class ServicioAudio extends Service implements MediaPlayer.OnPreparedList
         return super.onStartCommand(intent, flags, startId);
     }
 
-    /****************************************/
-    /***********Metodos de Control***********/
-    /****************************************/
     private void play(){
         if(rutaCancion != null){
             if(estado == Estados.error){
